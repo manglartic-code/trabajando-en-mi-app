@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
+    <meta name="description" content="Mi Pacífico App - Patrimonio digital del litoral Pacífico colombiano">
+    <meta name="theme-color" content="#1D9E75">
+    <title>Mi Pacífico App - Patrimonio Digital</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #FFF8F0;
+            --bg-secondary: #f5f0e8;
+            --text-primary: #1a1a1a;
+            --text-secondary: rgba(26, 26, 26, 0.6);
+            --border-color: rgba(29, 158, 117, 0.2);
+            --header-bg: linear-gradient(to right, #1D9E75, rgba(29, 158, 117, 0.8));
+            --accent-color: #1D9E75;
+        }
+
+        html.dark-mode {
+            --bg-primary: #0f1419;
+            --bg-secondary: #1a1f2e;
+            --text-primary: #f0f0f0;
+            --text-secondary: rgba(240, 240, 240, 0.6);
+            --border-color: rgba(29, 158, 117, 0.3);
+            --header-bg: linear-gradient(to right, #0d6e4f, rgba(13, 110, 79, 0.8));
+            --accent-color: #2db87f;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .app-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-primary);
+        }
+
+        .app-header {
+            background: var(--header-bg);
+            color: white;
+            padding: 1.5rem 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .app-header-content {
+            flex: 1;
+        }
+
+        .app-header h1 {
+            font-size: 1.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .app-header p {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        .social-share-header {
+            display: flex;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            transition: background-color 0.2s;
+            margin-right: 0.5rem;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .social-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-btn:active {
+            transform: scale(0.95);
+        }
+
+        .social-btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .social-btn-instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+        }
+
+        .social-btn-facebook {
+            background-color: #1877F2;
+            color: white;
+        }
+
+        .social-btn-twitter {
+            background-color: #1DA1F2;
+            color: white;
+        }
+
+        .app-content {
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: 5rem;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            padding: 1rem;
+            max-width: 28rem;
+            margin: 0 auto;
+        }
+
+        .module-btn {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-family: inherit;
+        }
+
+        .module-btn:active {
+            transform: scale(0.95);
+        }
+
+        .module-btn:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .module-btn-gastronomia {
+            background: linear-gradient(to bottom right, #fed7aa, #fef3c7);
+        }
+
+        .module-btn-medicina {
+            background: linear-gradient(to bottom right, #bbf7d0, #d1fae5);
+        }
+
+        .module-btn-musica {
+            background: linear-gradient(to bottom right, #bfdbfe, #dbeafe);
+        }
+
+        .module-btn-oral {
+            background: linear-gradient(to bottom right, #fecaca, #fecdd3);
+        }
+
+        .module-btn-contact {
+            background: linear-gradient(to bottom right, #fbbf24, #fcd34d);
+        }
+
+        html.dark-mode .module-btn-gastronomia {
+            background: linear-gradient(to bottom right, #8b5a00, #b8860b);
+        }
+
+        html.dark-mode .module-btn-medicina {
+            background: linear-gradient(to bottom right, #0d6e4f, #1a9966);
+        }
+
+        html.dark-mode .module-btn-musica {
+            background: linear-gradient(to bottom right, #003d99, #0052cc);
+        }
+
+        html.dark-mode .module-btn-oral {
+            background: linear-gradient(to bottom right, #7f1d1d, #b91c1c);
+        }
+
+        html.dark-mode .module-btn-contact {
+            background: linear-gradient(to bottom right, #b8860b, #d4a574);
+        }
+
+        .module-btn-gastronomia h3 { color: #92400e; }
+        .module-btn-gastronomia p { color: #b45309; }
+        .module-btn-medicina h3 { color: #15803d; }
+        .module-btn-medicina p { color: #16a34a; }
+        .module-btn-musica h3 { color: #1e40af; }
+        .module-btn-musica p { color: #2563eb; }
+        .module-btn-oral h3 { color: #7f1d1d; }
+        .module-btn-oral p { color: #dc2626; }
+        .module-btn-contact h3 { color: #92400e; }
+        .module-btn-contact p { color: #b45309; }
+
+        html.dark-mode .module-btn-gastronomia h3 { color: #fbbf24; }
+        html.dark-mode .module-btn-gastronomia p { color: #fcd34d; }
+        html.dark-mode .module-btn-medicina h3 { color: #4ade80; }
+        html.dark-mode .module-btn-medicina p { color: #86efac; }
+        html.dark-mode .module-btn-musica h3 { color: #60a5fa; }
+        html.dark-mode .module-btn-musica p { color: #93c5fd; }
+        html.dark-mode .module-btn-oral h3 { color: #fca5a5; }
+        html.dark-mode .module-btn-oral p { color: #fecaca; }
+        html.dark-mode .module-btn-contact h3 { color: #fbbf24; }
+        html.dark-mode .module-btn-contact p { color: #fcd34d; }
+
+        .module-btn h3 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+
+        .module-btn p {
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        .module-btn-emoji {
+            font-size: 2rem;
+        }
+
+        .footer-text {
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            display: none;
+        }
+
+        .footer-text.show {
+            display: block;
+        }
+
+        /* Pantalla de detalle */
+        .detail-screen {
+            display: none;
+        }
+
+        .detail-screen.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-header {
+            background: var(--header-bg);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .detail-header.contact-header {
+            background: linear-gradient(to right, #f59e0b, rgba(245, 158, 11, 0.8));
+        }
+
+        html.dark-mode .detail-header.contact-header {
+            background: linear-gradient(to right, #92400e, rgba(146, 64, 14, 0.8));
+        }
+
+        .detail-header button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .detail-header button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .detail-header-text {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .detail-header h1 {
+            font-size: 1.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .detail-header p {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .detail-image {
+            width: 100%;
+            height: 18rem;
+            overflow: hidden;
+            background-color: var(--bg-secondary);
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-content {
+            padding: 1rem;
+            space-y: 1.5rem;
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        .detail-description {
+            background: linear-gradient(to right, rgba(29, 158, 117, 0.1), rgba(29, 158, 117, 0.05));
+            border-radius: 0.75rem;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        html.dark-mode .detail-description {
+            background: linear-gradient(to right, rgba(45, 184, 127, 0.1), rgba(45, 184, 127, 0.05));
+        }
+
+        .detail-section {
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .detail-section:last-child {
+            border-bottom: none;
+        }
+
+        .detail-section h3 {
+            font-size: 1.125rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .detail-section-marker {
+            width: 0.25rem;
+            height: 1.5rem;
+            background-color: var(--accent-color);
+            border-radius: 9999px;
+        }
+
+        .detail-section p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-left: 0.75rem;
+        }
+
+        /* Social Share Section */
+        .social-share-section {
+            background: linear-gradient(to right, rgba(29, 158, 117, 0.05), rgba(29, 158, 117, 0.02));
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        html.dark-mode .social-share-section {
+            background: linear-gradient(to right, rgba(45, 184, 127, 0.05), rgba(45, 184, 127, 0.02));
+        }
+
+        .social-share-section h4 {
+            font-size: 0.875rem;
+            color: var(--accent-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .social-share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .social-share-btn {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-share-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-share-btn:active {
+            transform: scale(0.95);
+        }
+
+        .social-share-btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .social-share-btn-instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+        }
+
+        .social-share-btn-facebook {
+            background-color: #1877F2;
+            color: white;
+        }
+
+        .social-share-btn-twitter {
+            background-color: #1DA1F2;
+            color: white;
+        }
+
+        /* Formulario */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 6rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-submit {
+            width: 100%;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .form-submit:hover {
+            background-color: rgba(29, 158, 117, 0.9);
+        }
+
+        .form-submit:active {
+            transform: scale(0.98);
+        }
+
+        .form-success {
+            background: linear-gradient(to right, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            color: #15803d;
+            display: none;
+        }
+
+        html.dark-mode .form-success {
+            background: linear-gradient(to right, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.08));
+            color: #86efac;
+        }
+
+        .form-success.show {
+            display: block;
+        }
+
+        /* Mapa */
+        .map-container {
+            width: 100%;
+            height: 20rem;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            margin: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .map-info {
+            background: linear-gradient(to right, rgba(29, 158, 117, 0.05), rgba(29, 158, 117, 0.02));
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        html.dark-mode .map-info {
+            background: linear-gradient(to right, rgba(45, 184, 127, 0.05), rgba(45, 184, 127, 0.02));
+        }
+
+        .map-info strong {
+            color: var(--accent-color);
+        }
+
+        /* Audio Player */
+        .audio-player {
+            background: linear-gradient(to right, rgba(29, 158, 117, 0.05), rgba(29, 158, 117, 0.02));
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        html.dark-mode .audio-player {
+            background: linear-gradient(to right, rgba(45, 184, 127, 0.05), rgba(45, 184, 127, 0.02));
+        }
+
+        .audio-player h4 {
+            font-size: 0.875rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .audio-play-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+            transition: background-color 0.2s;
+        }
+
+        .audio-play-btn:hover {
+            background-color: rgba(29, 158, 117, 0.9);
+        }
+
+        .audio-play-btn:active {
+            transform: scale(0.95);
+        }
+
+        .audio-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .audio-info p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin: 0.25rem 0;
+        }
+
+        .detail-button {
+            width: 100%;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: background-color 0.2s;
+        }
+
+        .detail-button:hover {
+            background-color: rgba(29, 158, 117, 0.9);
+        }
+
+        .detail-button:active {
+            transform: scale(0.98);
+        }
+
+        .instruments-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+
+        .instrument-card {
+            background: linear-gradient(to bottom right, rgba(29, 158, 117, 0.05), rgba(29, 158, 117, 0.02));
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+        }
+
+        html.dark-mode .instrument-card {
+            background: linear-gradient(to bottom right, rgba(45, 184, 127, 0.05), rgba(45, 184, 127, 0.02));
+        }
+
+        .instrument-card h5 {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            margin-bottom: 0.25rem;
+        }
+
+        .instrument-card p {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        @media (min-width: 640px) {
+            .app-header {
+                padding: 1.5rem 2rem;
+            }
+
+            .modules-grid {
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+
+            .module-btn {
+                padding: 1.5rem;
+            }
+
+            .module-btn-emoji {
+                font-size: 2.5rem;
+            }
+
+            .map-container {
+                height: 24rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Pantalla principal -->
+        <div id="homeScreen" class="home-screen">
+            <header class="app-header">
+                <div class="app-header-content">
+                    <h1>Mi Pacífico App</h1>
+                    <p>Patrimonio digital del litoral</p>
+                    <p style="font-size: 0.7rem; margin-top: 0.25rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Mg. LUIS EDUARDO RODALLEGA</p>
+                </div>
+                <div class="social-share-header">
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">🌙</button>
+                    <button class="social-btn social-btn-whatsapp" onclick="shareOnWhatsApp()" title="Contactar por WhatsApp">💬</button>
+                    <button class="social-btn social-btn-instagram" onclick="shareOnInstagram()" title="Compartir en Instagram">📷</button>
+                    <button class="social-btn social-btn-facebook" onclick="shareOnFacebook()" title="Compartir en Facebook">f</button>
+                </div>
+            </header>
+
+            <div class="app-content">
+                <div class="modules-grid">
+                    <button class="module-btn module-btn-gastronomia" onclick="showModule('gastronomia')">
+                        <div class="module-btn-emoji">🍽️</div>
+                        <h3>Gastronomía</h3>
+                        <p>Recetas y sabores</p>
+                    </button>
+
+                    <button class="module-btn module-btn-medicina" onclick="showModule('medicina')">
+                        <div class="module-btn-emoji">🌿</div>
+                        <h3>Medicina</h3>
+                        <p>Plantas ancestrales</p>
+                    </button>
+
+                    <button class="module-btn module-btn-musica" onclick="showModule('musica')">
+                        <div class="module-btn-emoji">🎵</div>
+                        <h3>Música</h3>
+                        <p>Danzas y ritmos</p>
+                    </button>
+
+                    <button class="module-btn module-btn-oral" onclick="showModule('oral')">
+                        <div class="module-btn-emoji">📖</div>
+                        <h3>Tradición Oral</h3>
+                        <p>Historias de mayores</p>
+                    </button>
+
+                    <button class="module-btn module-btn-contact" onclick="showModule('contact')" style="grid-column: span 2;">
+                        <div class="module-btn-emoji">✉️</div>
+                        <h3>Comparte tu Historia</h3>
+                        <p>Envía recetas, plantas, historias y datos</p>
+                    </button>
+                </div>
+
+                <div class="footer-text show">
+                    <p>Río Naya · Valle del Cauca</p>
+                    <p style="color: var(--accent-color); font-weight: 600; margin-top: 0.5rem;">✓ Patrimonio Digital Preservado</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla de detalle -->
+        <div id="detailScreen" class="detail-screen">
+            <div id="detailHeader" class="detail-header">
+                <button onclick="goHome()">←</button>
+                <div class="detail-header-text">
+                    <h1 id="detailTitle">Título</h1>
+                    <p id="detailSubtitle">Subtítulo</p>
+                </div>
+            </div>
+
+            <div id="detailImageContainer" class="detail-image">
+                <img id="detailImage" src="" alt="Módulo">
+            </div>
+
+            <div class="detail-content">
+                <div id="detailDescription" class="detail-description"></div>
+                <div id="detailSections"></div>
+                <button class="detail-button" onclick="goHome()">← Volver al inicio</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let currentAudio = null;
+        const appUrl = window.location.href;
+
+        // Inicializar tema
+        function initTheme() {
+            const savedTheme = localStorage.getItem('miPacificoTheme') || 'light';
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-mode');
+                document.querySelector('.theme-toggle').textContent = '☀️';
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark-mode');
+            localStorage.setItem('miPacificoTheme', isDark ? 'dark' : 'light');
+            document.querySelector('.theme-toggle').textContent = isDark ? '☀️' : '🌙';
+        }
+
+        const modules = {
+            gastronomia: {
+                title: "Gastronomía",
+                subtitle: "Sabores del litoral Pacífico",
+                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663326396830/m6VbiQYSKRgSqs3SasGvdL/gastronomia-pacifico-aCWEw74HqkVaQQMWHxvHmQ.webp",
+                description: "La cocina del Pacífico es soberanía alimentaria. Recetas documentadas con las comunidades del río Naya, usando ingredientes locales como el naidí, el chontaduro y las hierbas de azotea.",
+                sections: [
+                    {
+                        title: "Platos Emblemáticos",
+                        content: "El encocao (pescado en leche de coco), la sopa de piangua, el tapao de pescado, y el arroz con piangua son los platos bandera de la región. Cada uno cuenta historias de tradición y conexión con el manglar."
+                    },
+                    {
+                        title: "Ingredientes Locales",
+                        content: "Naidí (fruto de palma), chontaduro, piangua (molusco de manglar), pescado de río y mar. Todos ellos son parte de la identidad culinaria del territorio."
+                    },
+                    {
+                        title: "Hierbas de Azotea",
+                        content: "Cilantro cimarrón, poleo, albahaca negra, orégano de hoja ancha. Son el alma de la sazón pacífica, cultivadas en espacios elevados para protegerlas de inundaciones."
+                    },
+
+                ]
+            },
+            medicina: {
+                title: "Medicina Tradicional",
+                subtitle: "Plantas y saberes ancestrales",
+                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663326396830/m6VbiQYSKRgSqs3SasGvdL/medicina-pacifico-ihaj72hBQWgcj7wD4QxjEJ.webp",
+                description: "Las parteras, los sabedores y las plantas de azotea son el sistema de salud ancestral del Pacífico. Este módulo recoge conocimientos de etnobotánica del río Naya.",
+                sections: [
+                    {
+                        title: "La Azotea: Espacio de Vida",
+                        content: "Espacio elevado donde las mujeres siembran plantas medicinales y condimentos. Protege la biodiversidad de inundaciones y plagas, y es centro de transmisión de saberes generacionales."
+                    },
+                    {
+                        title: "Plantas Medicinales",
+                        content: "Poleo para dolores estomacales, albahaca para limpiezas espirituales, paico como antiparasitario natural, verbena para la sangre y presión. Cada planta tiene un propósito específico en la medicina tradicional."
+                    },
+                    {
+                        title: "Sabedores y Parteras",
+                        content: "Figuras clave que preservan el conocimiento etnobotánico. Su labor es fundamental para mantener viva la tradición de curación y cuidado de la salud comunitaria."
+                    }
+                ]
+            },
+            musica: {
+                title: "Música y Danzas",
+                subtitle: "Expresiones ancestrales del Pacífico",
+                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663326396830/m6VbiQYSKRgSqs3SasGvdL/musica-pacifico-5GL5FrYbW4EkRxMi5mFMXJ.webp",
+                description: "Las músicas de marimba, los cantos y danzas tradicionales del Pacífico Sur recogen en sus ritmos la herencia africana, indígena y española, creando una identidad sonora única.",
+                sections: [
+                    {
+                        title: "Conjunto de Marimba",
+                        content: "Instrumentos: Marimba de chonta (el piano de la selva), cununos (macho y hembra), bombos, guasás. Ritmos: Currulao (el más sagrado), Bambuco Viejo, Patacoré, Berejú, Juga, Bunde. Cada ritmo tiene su propia historia y significado cultural."
+                    },
+                    {
+                        title: "Danzas Tradicionales",
+                        content: "Currulao: danza de cortejo con pañuelos. Juga: variante del currulao con coreografías circulares. Abozao: ritmo más frenético. Cada danza es una forma de comunicación y celebración comunitaria.",
+                        hasAudio: true
+                    },
+                    {
+                        title: "Instrumentos Tradicionales",
+                        content: "El conjunto de marimba es único en el mundo. La marimba de chonta tiene 22 teclas de madera, resonadores de calabazo y tubos de bambú. Los cununos (tambores cilíndricos) marcan el ritmo fundamental.",
+                        instruments: [
+                            { name: "Marimba", desc: "Piano de la selva con teclas de chonta" },
+                            { name: "Cununo", desc: "Tambor cilíndrico de cuero" },
+                            { name: "Bombo", desc: "Tambor grave de gran tamaño" },
+                            { name: "Guasá", desc: "Instrumento de percusión de semillas" }
+                        ]
+                    },
+                    {
+                        title: "Festival Petronio Álvarez",
+                        content: "El evento más importante de la cultura afrocolombiana, celebrado cada agosto en Cali en honor a Petronio Álvarez Quintero. Reúne a músicos y danzadores de toda la región del Pacífico."
+                    }
+                ]
+            },
+            oral: {
+                title: "Tradición Oral",
+                subtitle: "Historias y voces de los mayores",
+                image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663326396830/m6VbiQYSKRgSqs3SasGvdL/tradicion-oral-pacifico-Xphd3ZRNC5rW8EYPb6dxuL.webp",
+                description: "Los mayores del Naya son archivos vivos. Este módulo recoge historias, mitos y narraciones del territorio, preservando la oralidad como mecanismo de resistencia cultural.",
+                sections: [
+                    {
+                        title: "Mitos y Leyendas",
+                        content: "La Tunda (entidad que 'entunda' a los niños), el Riviel (espíritu que viaja en canoa con luz en el río), la Madremonte (protectora de bosques y ríos). Cada mito es una forma de entender y proteger el territorio."
+                    },
+                    {
+                        title: "Narrativas Ancestrales",
+                        content: "Cantos de boga (mientras se navega el río), décimas (poesía cantada), arrullos (cantos a los santos y niños). Son formas de transmisión de conocimiento, valores y memoria colectiva."
+                    },
+                    {
+                        title: "Río Naya: Eje de Vida",
+                        content: "Conecta el Valle del Cauca y el Cauca, habitado por comunidades afrodescendientes e indígenas (Eperara Siapidara). El río es más que geografía: es identidad, sustento y espíritu."
+                    }
+                ]
+            },
+            contact: {
+                title: "Comparte tu Historia",
+                subtitle: "Contribuye al patrimonio digital",
+                hideImage: true,
+                isContact: true
+            }
+        };
+
+        function shareOnWhatsApp() {
+            const phoneNumber = '573206820235'; // Colombia
+            const text = "Hola, me gustaría conocer más sobre Mi Pacífico App y contribuir al patrimonio digital del Río Naya. 🌿🍽️🎵";
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareOnInstagram() {
+            alert('Para compartir en Instagram, copia el enlace y pégalo en tu biografía o historias:\n\n' + appUrl);
+        }
+
+        function shareOnFacebook() {
+            const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(appUrl)}`;
+            window.open(url, '_blank', 'width=600,height=400');
+        }
+
+        function shareOnTwitter() {
+            const text = "Descubre Mi Pacífico App - Patrimonio digital del Río Naya 🌿🍽️🎵";
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(appUrl)}`;
+            window.open(url, '_blank');
+        }
+
+        function createAudioPlayer(title, filename) {
+            return `
+                <div class="audio-player">
+                    <h4>🎵 ${title}</h4>
+                    <div class="audio-controls">
+                        <button class="audio-play-btn" onclick="playAudio('${filename}', this)">▶</button>
+                        <div class="audio-info">
+                            <p>${title}</p>
+                            <p style="font-size: 0.65rem; margin-top: 0.25rem;">Cargando...</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+
+
+        function createContactForm() {
+            return `
+                <div class="form-success" id="formSuccess">
+                    ✓ ¡Gracias por compartir! Tu aporte ayuda a preservar el patrimonio del Pacífico.
+                </div>
+                <form onsubmit="handleFormSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nombre *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Categoría *</label>
+                        <select id="category" name="category" required>
+                            <option value="">Selecciona una categoría</option>
+                            <option value="receta">Receta gastronómica</option>
+                            <option value="planta">Planta medicinal</option>
+                            <option value="ritmo">Ritmo o danza</option>
+                            <option value="historia">Historia o leyenda</option>
+                            <option value="otro">Otro aporte</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title">Título del aporte *</label>
+                        <input type="text" id="title" name="title" placeholder="Ej: Encocao de mi abuela" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">Descripción detallada *</label>
+                        <textarea id="content" name="content" placeholder="Comparte tu receta, planta, historia o dato importante..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Comunidad o lugar de origen</label>
+                        <input type="text" id="location" name="location" placeholder="Ej: Río Naya, Valle del Cauca">
+                    </div>
+
+                    <button type="submit" class="form-submit">Enviar aporte</button>
+                </form>
+
+                <div class="social-share-section">
+                    <h4>Contacta o comparte en redes</h4>
+                    <div class="social-share-buttons">
+                        <button class="social-share-btn social-share-btn-whatsapp" onclick="shareOnWhatsApp()" title="Contactar por WhatsApp">💬</button>
+                        <button class="social-share-btn social-share-btn-instagram" onclick="shareOnInstagram()" title="Compartir en Instagram">📷</button>
+                        <button class="social-share-btn social-share-btn-facebook" onclick="shareOnFacebook()" title="Compartir en Facebook">f</button>
+                        <button class="social-share-btn social-share-btn-twitter" onclick="shareOnTwitter()" title="Compartir en Twitter">𝕏</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                category: document.getElementById('category').value,
+                title: document.getElementById('title').value,
+                content: document.getElementById('content').value,
+                location: document.getElementById('location').value,
+                timestamp: new Date().toISOString()
+            };
+
+            let submissions = JSON.parse(localStorage.getItem('miPacificoSubmissions') || '[]');
+            submissions.push(formData);
+            localStorage.setItem('miPacificoSubmissions', JSON.stringify(submissions));
+
+            document.getElementById('formSuccess').classList.add('show');
+            event.target.reset();
+
+            setTimeout(() => {
+                document.getElementById('formSuccess').classList.remove('show');
+            }, 5000);
+        }
+
+
+
+        function playAudio(filename, button) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+
+            const audio = new Audio(filename);
+            currentAudio = audio;
+            audio.play();
+            button.textContent = '⏸';
+            button.onclick = () => pauseAudio(button);
+
+            audio.onended = () => {
+                button.textContent = '▶';
+                button.onclick = () => playAudio(filename, button);
+            };
+        }
+
+        function pauseAudio(button) {
+            if (currentAudio) {
+                currentAudio.pause();
+                button.textContent = '▶';
+            }
+        }
+
+        function showModule(moduleId) {
+            const module = modules[moduleId];
+            document.getElementById('homeScreen').style.display = 'none';
+            document.getElementById('detailScreen').classList.add('active');
+            
+            const detailHeader = document.getElementById('detailHeader');
+            if (module.isContact) {
+                detailHeader.classList.add('contact-header');
+            } else {
+                detailHeader.classList.remove('contact-header');
+            }
+
+            document.getElementById('detailTitle').textContent = module.title;
+            document.getElementById('detailSubtitle').textContent = module.subtitle;
+            
+            const imageContainer = document.getElementById('detailImageContainer');
+            if (module.hideImage) {
+                imageContainer.style.display = 'none';
+            } else {
+                imageContainer.style.display = 'block';
+                document.getElementById('detailImage').src = module.image;
+            }
+
+            if (module.isContact) {
+                document.getElementById('detailDescription').innerHTML = `
+                    <p>Ayuda a preservar el patrimonio cultural del Río Naya compartiendo tus recetas, plantas medicinales, historias, ritmos y datos sobre las tradiciones del Pacífico.</p>
+                `;
+                document.getElementById('detailSections').innerHTML = createContactForm();
+            } else {
+                document.getElementById('detailDescription').textContent = module.description;
+                
+                let sectionsHtml = '';
+                module.sections.forEach((section, index) => {
+                    sectionsHtml += `
+                        <div class="detail-section">
+                            <h3><span class="detail-section-marker"></span>${section.title}</h3>
+                            <p>${section.content}</p>
+                    `;
+                    
+                    if (section.hasAudio && moduleId === 'musica') {
+                        sectionsHtml += createAudioPlayer('Juga', 'audio-juga.mp3');
+                        sectionsHtml += createAudioPlayer('Chirimía', 'audio-chirimia.mp3');
+                    }
+
+                    if (section.instruments) {
+                        sectionsHtml += '<div class="instruments-grid">';
+                        section.instruments.forEach(inst => {
+                            sectionsHtml += `
+                                <div class="instrument-card">
+                                    <h5>${inst.name}</h5>
+                                    <p>${inst.desc}</p>
+                                </div>
+                            `;
+                        });
+                        sectionsHtml += '</div>';
+                    }
+
+                    sectionsHtml += '</div>';
+                });
+                
+                document.getElementById('detailSections').innerHTML = sectionsHtml;
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        function goHome() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            document.getElementById('detailScreen').classList.remove('active');
+            document.getElementById('homeScreen').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        // Inicializar
+        initTheme();
+    </script>
+</body>
+</html>
