@@ -23,7 +23,6 @@
         h1,h2,h3,h4,h5 { font-family: 'Playfair Display', serif; font-weight: 700; }
         .app-container { min-height: 100vh; display: flex; flex-direction: column; background: var(--bg-primary); }
 
-        /* HEADER */
         .app-header {
             background: linear-gradient(to right, #1D9E75, rgba(29,158,117,0.85));
             color: white; padding: 1.2rem 1rem;
@@ -49,7 +48,6 @@
         .btn-wa { background: #25D366; color: white; }
         .btn-fb { background: #1877F2; color: white; font-weight: 700; font-size: 0.9rem; }
 
-        /* MÓDULOS */
         .modules-grid {
             display: grid; grid-template-columns: repeat(2,1fr);
             gap: 0.75rem; padding: 1rem; max-width: 28rem; margin: 0 auto;
@@ -65,28 +63,31 @@
         .mod-m  { background: linear-gradient(135deg,#bbf7d0,#d1fae5); }
         .mod-mu { background: linear-gradient(135deg,#bfdbfe,#dbeafe); }
         .mod-o  { background: linear-gradient(135deg,#fecaca,#fecdd3); }
-        .mod-c  { background: linear-gradient(135deg,#fbbf24,#fcd34d); grid-column: span 2; }
+        .mod-q  { background: linear-gradient(135deg,#e0e7ff,#ede9fe); }
+        .mod-c  { background: linear-gradient(135deg,#fbbf24,#fcd34d); }
         html.dark-mode .mod-g  { background: linear-gradient(135deg,#8b5a00,#b8860b); }
         html.dark-mode .mod-m  { background: linear-gradient(135deg,#0d6e4f,#1a9966); }
         html.dark-mode .mod-mu { background: linear-gradient(135deg,#003d99,#0052cc); }
         html.dark-mode .mod-o  { background: linear-gradient(135deg,#7f1d1d,#b91c1c); }
+        html.dark-mode .mod-q  { background: linear-gradient(135deg,#312e81,#4338ca); }
         html.dark-mode .mod-c  { background: linear-gradient(135deg,#b8860b,#d4a574); }
         .mod-g h3  { color:#92400e; } .mod-g p  { color:#b45309; }
         .mod-m h3  { color:#15803d; } .mod-m p  { color:#16a34a; }
         .mod-mu h3 { color:#1e40af; } .mod-mu p { color:#2563eb; }
         .mod-o h3  { color:#7f1d1d; } .mod-o p  { color:#dc2626; }
+        .mod-q h3  { color:#3730a3; } .mod-q p  { color:#4f46e5; }
         .mod-c h3  { color:#92400e; } .mod-c p  { color:#b45309; }
         html.dark-mode .mod-g h3  { color:#fbbf24; } html.dark-mode .mod-g p  { color:#fcd34d; }
         html.dark-mode .mod-m h3  { color:#4ade80; } html.dark-mode .mod-m p  { color:#86efac; }
         html.dark-mode .mod-mu h3 { color:#60a5fa; } html.dark-mode .mod-mu p { color:#93c5fd; }
         html.dark-mode .mod-o h3  { color:#fca5a5; } html.dark-mode .mod-o p  { color:#fecaca; }
+        html.dark-mode .mod-q h3  { color:#a5b4fc; } html.dark-mode .mod-q p  { color:#c7d2fe; }
         html.dark-mode .mod-c h3  { color:#fbbf24; } html.dark-mode .mod-c p  { color:#fcd34d; }
         .module-btn h3 { font-size: 0.85rem; font-weight: 700; margin-top: 0.5rem; }
         .module-btn p  { font-size: 0.72rem; margin-top: 0.25rem; }
         .emoji { font-size: 1.8rem; }
         .footer-txt { padding: 1rem; text-align: center; font-size: 0.72rem; color: var(--text-secondary); }
 
-        /* PANTALLA DETALLE */
         .detail-screen { display: none; flex-direction: column; min-height: 100vh; }
         .detail-screen.active { display: flex; }
         .detail-header {
@@ -98,6 +99,8 @@
         }
         html.dark-mode .detail-header { background: linear-gradient(to right,#0d6e4f,rgba(13,110,79,0.85)); }
         .detail-header.contact-hdr { background: linear-gradient(to right,#f59e0b,rgba(245,158,11,0.85)); }
+        .detail-header.quienes-hdr { background: linear-gradient(to right,#4f46e5,rgba(79,70,229,0.85)); }
+        html.dark-mode .detail-header.quienes-hdr { background: linear-gradient(to right,#312e81,rgba(49,46,129,0.85)); }
         .back-btn {
             background: rgba(255,255,255,0.2); border: none; color: white;
             padding: 0.5rem 0.75rem; border-radius: 0.5rem; cursor: pointer;
@@ -131,7 +134,6 @@
         }
         .detail-btn:hover { background: #0F6E56; }
 
-        /* AUDIO PLAYER */
         .audio-player {
             background: rgba(29,158,117,0.06); border: 1px solid var(--border-color);
             border-radius: 0.75rem; padding: 0.9rem; margin: 0.8rem 0 0 0.75rem;
@@ -152,7 +154,6 @@
         }
         html.dark-mode .audio-pendiente { color: #fcd34d; }
 
-        /* FORMULARIO */
         .form-group { margin-bottom: 0.9rem; }
         .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--accent-color); margin-bottom: 0.4rem; }
         .form-group input,
@@ -201,6 +202,36 @@
         .s-wa { background: #25D366; color: white; }
         .s-fb { background: #1877F2; color: white; font-weight: 700; font-size: 1rem; }
         .s-tw { background: #1DA1F2; color: white; font-weight: 700; font-size: 0.9rem; }
+
+        .perfil-avatar {
+            width: 90px; height: 90px; border-radius: 50%;
+            background: linear-gradient(135deg,#1D9E75,#0F6E56);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1rem; font-size: 2.5rem;
+        }
+        .perfil-cita {
+            background: linear-gradient(to right,rgba(79,70,229,0.08),rgba(79,70,229,0.04));
+            border-radius: 0.75rem; padding: 1rem;
+            border: 1px solid rgba(79,70,229,0.2);
+            margin-bottom: 1.2rem; font-size: 0.88rem;
+            line-height: 1.7; color: var(--text-primary);
+            font-style: italic; text-align: center;
+        }
+        .perfil-badge {
+            display: inline-block; background: linear-gradient(135deg,#1D9E75,#0F6E56);
+            color: white; font-size: 0.72rem; font-weight: 600;
+            padding: 0.3rem 0.9rem; border-radius: 20px; margin: 0.2rem;
+        }
+        .perfil-cta {
+            background: linear-gradient(135deg,#1D9E75,#0F6E56);
+            border-radius: 0.75rem; padding: 1.2rem; text-align: center; margin: 1rem 0;
+        }
+        .perfil-cta p { color: white; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.6rem; }
+        .perfil-cta button {
+            background: white; color: #1D9E75; border: none;
+            padding: 0.6rem 1.5rem; border-radius: 0.5rem;
+            font-weight: 700; font-size: 0.85rem; cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -216,8 +247,8 @@
             </div>
             <div class="header-btns">
                 <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">🌙</button>
-                <button class="social-btn btn-wa" onclick="contactarWhatsApp()" title="Contactar por WhatsApp">💬</button>
-                <button class="social-btn btn-fb" onclick="compartirFacebook()" title="Compartir en Facebook">f</button>
+                <button class="social-btn btn-wa" onclick="contactarWhatsApp()" title="WhatsApp">💬</button>
+                <button class="social-btn btn-fb" onclick="compartirFacebook()" title="Facebook">f</button>
             </div>
         </header>
         <div style="padding-bottom:2rem;">
@@ -234,8 +265,11 @@
                 <button class="module-btn mod-o" onclick="showModule('oral')">
                     <div class="emoji">📖</div><h3>Tradición Oral</h3><p>Historias de mayores</p>
                 </button>
+                <button class="module-btn mod-q" onclick="showModule('quienes')">
+                    <div class="emoji">👨‍🏫</div><h3>Quiénes somos</h3><p>El proyecto y su autor</p>
+                </button>
                 <button class="module-btn mod-c" onclick="showModule('contact')">
-                    <div class="emoji">✉️</div><h3>Comparte tu Historia</h3><p>Envía recetas, plantas, historias y datos</p>
+                    <div class="emoji">✉️</div><h3>Comparte</h3><p>Tu historia y aportes</p>
                 </button>
             </div>
             <div class="footer-txt">
@@ -265,7 +299,6 @@
     </div>
 
 </div>
-
 <script>
 let currentAudio = null;
 const appUrl = window.location.href;
@@ -287,7 +320,7 @@ const modules = {
     medicina: {
         title: "Medicina Tradicional",
         subtitle: "Etnobotánica y saberes ancestrales del Naya",
-       image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80",
+        image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80",
         description: "Las parteras, los sabedores y las plantas de azotea son el sistema de salud ancestral del Pacífico. Este módulo recoge conocimientos de etnobotánica del río Naya, validados con los sabedores del territorio.",
         sections: [
             { title: "La azotea: espacio de vida", content: "Espacio elevado donde las mujeres siembran plantas medicinales y condimentos. Protege la biodiversidad de inundaciones y es centro de transmisión de saberes generacionales entre mujeres de la comunidad." },
@@ -313,9 +346,9 @@ const modules = {
                     { name: "Guasá", desc: "Tubo de guadua con semillas secas. Instrumento de ritmo." }
                 ]
             },
-            { title: "Bailes y danzas", content: "Danza de pañuelo: Currulao, Bambuco viejo, Bunde, Juga cruzada. Danza de movimiento: Jota chocoana, El pizón, Contradanza, Abozao, Tamborito, Redondel. Cada danza es representación de vivencias comunitarias: siembra, conquista y ritos fúnebres." },
-            { title: "Vestimentas y accesorios", content: "Sombrero · Pañuelo · Turbante. El uniforme blanco se usa para bailar Currulao y Bambuco viejo. Otros uniformes acompañan las danzas de movimiento y algunas danzas de pañuelo, aportando magia, belleza y elegancia." },
-            { title: "Festival Petronio Álvarez", content: "Festival dedicado a la música folclórica del Pacífico colombiano, celebrado cada agosto en Cali. Rinde homenaje a Patricio Romano Petronio Álvarez Quintero (1914–1966) y reúne compositores, grupos e investigadores de la música afrocolombiana." }
+            { title: "Bailes y danzas", content: "Danza de pañuelo: Currulao, Bambuco viejo, Bunde, Juga cruzada. Danza de movimiento: Jota chocoana, El pizón, Contradanza, Abozao, Tamborito, Redondel." },
+            { title: "Vestimentas y accesorios", content: "Sombrero · Pañuelo · Turbante. El uniforme blanco se usa para bailar Currulao y Bambuco viejo. Otros uniformes acompañan las danzas de movimiento, aportando magia, belleza y elegancia." },
+            { title: "Festival Petronio Álvarez", content: "Festival dedicado a la música folclórica del Pacífico colombiano, celebrado cada agosto en Cali. Rinde homenaje a Patricio Romano Petronio Álvarez Quintero (1914–1966)." }
         ]
     },
     oral: {
@@ -324,16 +357,21 @@ const modules = {
         image: "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=800&q=80",
         description: "Los mayores del Naya son archivos vivos. Este módulo recoge historias, mitos y narraciones del territorio, preservando la oralidad como mecanismo de resistencia cultural y transmisión generacional entre las comunidades ribereñas.",
         sections: [
-            { title: "Mitos y leyendas", content: "La Tunda (entidad que 'entunda' a los niños), el Riviel (espíritu que viaja en canoa con luz en el río), la Madremonte (protectora de bosques y ríos), el Duende (protector de animales del monte). Cada mito es una forma de entender y proteger el territorio." },
-            { title: "Narrativas ancestrales", content: "Cantos de boga (mientras se navega el río), décimas (poesía cantada), arrullos (cantos a los santos y niños muertos). Son formas de transmisión de conocimiento, valores y memoria colectiva que resisten el olvido." },
-            { title: "Río Naya: eje de vida", content: "Conecta el Valle del Cauca y el Cauca, habitado por comunidades afrodescendientes e indígenas Eperara Siapidara. El río es más que geografía: es identidad, sustento, historia y espíritu de las comunidades que lo habitan." },
-            { title: "Contenido en construcción", content: "Este módulo se está documentando con los mayores de las comunidades ribereñas. Próximamente historias grabadas en el territorio, fotografías y testimonios en voz propia de los sabedores del Naya." }
+            { title: "Mitos y leyendas", content: "La Tunda (entidad que 'entunda' a los niños), el Riviel (espíritu que viaja en canoa con luz en el río), la Madremonte (protectora de bosques y ríos), el Duende (protector de animales del monte)." },
+            { title: "Narrativas ancestrales", content: "Cantos de boga (mientras se navega el río), décimas (poesía cantada), arrullos (cantos a los santos y niños). Formas de transmisión de conocimiento, valores y memoria colectiva que resisten el olvido." },
+            { title: "Río Naya: eje de vida", content: "Conecta el Valle del Cauca y el Cauca, habitado por comunidades afrodescendientes e indígenas Eperara Siapidara. El río es identidad, sustento, historia y espíritu de las comunidades que lo habitan." },
+            { title: "Contenido en construcción", content: "Este módulo se está documentando con los mayores de las comunidades ribereñas. Próximamente historias grabadas en el territorio y testimonios en voz propia de los sabedores del Naya." }
         ]
     },
+    quienes: {
+        title: "Quiénes somos",
+        subtitle: "El proyecto y su autor",
+        isQuienes: true
+    },
     contact: {
-        isContact: true,
         title: "Comparte tu Historia",
-        subtitle: "Contribuye al patrimonio digital del Pacífico"
+        subtitle: "Contribuye al patrimonio digital del Pacífico",
+        isContact: true
     }
 };
 
@@ -361,46 +399,120 @@ function showModule(id) {
     document.getElementById('homeScreen').style.display = 'none';
     document.getElementById('detailScreen').classList.add('active');
     const dh = document.getElementById('detailHeader');
-    dh.className = 'detail-header' + (m.isContact ? ' contact-hdr' : '');
-    document.getElementById('detailTitle').textContent = m.title;
-    document.getElementById('detailSubtitle').textContent = m.subtitle;
     const iw = document.getElementById('detailImgWrap');
+
+    if (m.isQuienes) {
+        dh.className = 'detail-header quienes-hdr';
+        document.getElementById('detailTitle').textContent = m.title;
+        document.getElementById('detailSubtitle').textContent = m.subtitle;
+        iw.style.display = 'none';
+        document.getElementById('detailDesc').innerHTML = '';
+        document.getElementById('detailSections').innerHTML = buildQuienesSomos();
+        window.scrollTo(0, 0);
+        return;
+    }
+
     if (m.isContact) {
+        dh.className = 'detail-header contact-hdr';
+        document.getElementById('detailTitle').textContent = m.title;
+        document.getElementById('detailSubtitle').textContent = m.subtitle;
         iw.style.display = 'none';
         document.getElementById('detailDesc').innerHTML = '<p>Ayuda a preservar el patrimonio cultural del Río Naya compartiendo tus recetas, plantas medicinales, historias y tradiciones del Pacífico. Cada aporte enriquece este archivo digital colectivo.</p>';
         document.getElementById('detailSections').innerHTML = buildContactForm();
-    } else {
-        iw.style.display = 'block';
-        document.getElementById('detailImg').src = m.image;
-        document.getElementById('detailImg').alt = m.title;
-        document.getElementById('detailDesc').textContent = m.description;
-        let html = '';
-        m.sections.forEach(s => {
-            html += `<div class="detail-section"><h3><span class="section-marker"></span>${s.title}</h3><p>${s.content}</p>`;
-            if (s.hasAudio) {
-                html += `
-                <div class="audio-player">
-                    <h4>🎵 Reproducir muestra musical</h4>
-                    <div class="audio-controls">
-                        <button class="audio-play-btn" onclick="playAudio(this)">▶</button>
-                        <div class="audio-info">
-                            <p style="font-weight:600;">Chirimía del Pacífico</p>
-                            <p>Muestra de audio del territorio</p>
-                        </div>
+        window.scrollTo(0, 0);
+        return;
+    }
+
+    dh.className = 'detail-header';
+    document.getElementById('detailTitle').textContent = m.title;
+    document.getElementById('detailSubtitle').textContent = m.subtitle;
+    iw.style.display = 'block';
+    document.getElementById('detailImg').src = m.image;
+    document.getElementById('detailImg').alt = m.title;
+    document.getElementById('detailDesc').textContent = m.description;
+
+    let html = '';
+    m.sections.forEach(s => {
+        html += `<div class="detail-section"><h3><span class="section-marker"></span>${s.title}</h3><p>${s.content}</p>`;
+        if (s.hasAudio) {
+            html += `
+            <div class="audio-player">
+                <h4>🎵 Reproducir muestra musical</h4>
+                <div class="audio-controls">
+                    <button class="audio-play-btn" onclick="this.textContent = this.textContent === '▶' ? '⏸' : '▶'">▶</button>
+                    <div class="audio-info">
+                        <p style="font-weight:600;">Chirimía del Pacífico</p>
+                        <p>Muestra de audio del territorio</p>
                     </div>
                 </div>
-                <p class="audio-pendiente">⏳ Audios del territorio en proceso de grabación con la comunidad del río Naya</p>`;
-            }
-            if (s.instruments) {
-                html += '<div class="instruments-grid">';
-                s.instruments.forEach(i => html += `<div class="instrument-card"><h5>${i.name}</h5><p>${i.desc}</p></div>`);
-                html += '</div>';
-            }
+            </div>
+            <p class="audio-pendiente">⏳ Audios del territorio en proceso de grabación con la comunidad del río Naya</p>`;
+        }
+        if (s.instruments) {
+            html += '<div class="instruments-grid">';
+            s.instruments.forEach(i => html += `<div class="instrument-card"><h5>${i.name}</h5><p>${i.desc}</p></div>`);
             html += '</div>';
-        });
-        document.getElementById('detailSections').innerHTML = html;
-    }
+        }
+        html += '</div>';
+    });
+    document.getElementById('detailSections').innerHTML = html;
     window.scrollTo(0, 0);
+}
+
+function buildQuienesSomos() {
+    return `
+        <div style="text-align:center; padding:1.5rem 0 1rem;">
+            <div class="perfil-avatar">👨‍🏫</div>
+            <h2 style="font-size:1.3rem; color:var(--text-primary); margin-bottom:0.3rem;">Luis Eduardo Rodallegas Alomia</h2>
+            <p style="font-size:0.82rem; color:var(--accent-color); font-weight:600; margin-bottom:0.2rem;">Licenciado en Tecnología e Informática</p>
+            <p style="font-size:0.78rem; color:var(--text-secondary); margin-bottom:0.8rem;">Magíster en TIC para la Educación · Universidad Tecnológica de Bolívar</p>
+            <div>
+                <span class="perfil-badge">Docente público</span>
+                <span class="perfil-badge">Investigador</span>
+                <span class="perfil-badge">Orgullosamente Nayero</span>
+            </div>
+        </div>
+
+        <div class="perfil-cita">
+            "Estoy convencido de que las tecnologías son una oportunidad para avanzar en los territorios y conservar nuestras riquezas culturales."
+            <br><br>
+            <span style="font-size:0.75rem; font-style:normal; color:var(--text-secondary);">— Luis Eduardo Rodallegas Alomia</span>
+        </div>
+
+        <div class="detail-section">
+            <h3><span class="section-marker"></span>Sobre el autor</h3>
+            <p>Docente de la Institución Educativa Técnica Agropecuaria Patricio Olave Angulo, ubicada en Puerto Merizalde, zona rural ribereña del río Naya, Buenaventura — Valle del Cauca. Apasionado por las tecnologías y su potencial transformador en territorios rurales. Orgullosamente Nayero.</p>
+        </div>
+
+        <div class="detail-section">
+            <h3><span class="section-marker"></span>Formación académica</h3>
+            <p>
+                <strong style="color:var(--accent-color);">Licenciatura</strong> en Tecnología e Informática · Universidad de Manizales<br><br>
+                <strong style="color:var(--accent-color);">Maestría</strong> en Educación Mediada por las TIC · Universidad Tecnológica de Bolívar<br><br>
+                <strong style="color:var(--accent-color);">En proceso</strong> · Aspirante a Doctorado en Educación y TIC — orientado a la preservación del patrimonio cultural inmaterial mediante tecnologías digitales
+            </p>
+        </div>
+
+        <div class="detail-section">
+            <h3><span class="section-marker"></span>Sobre Mi Pacífico App</h3>
+            <p>Proyecto de rescate cultural del litoral Pacífico colombiano iniciado como trabajo de grado de licenciatura y desarrollado como investigación de maestría en la Institución Educativa Patricio Olave Angulo. Esta versión es un desarrollo independiente y de autoría propia, orientado a construir un ecosistema digital de patrimonio inmaterial para las comunidades ribereñas del río Naya.</p>
+        </div>
+
+        <div class="detail-section">
+            <h3><span class="section-marker"></span>Territorio y comunidad</h3>
+            <p>El río Naya conecta el Valle del Cauca y el Cauca, habitado por comunidades afrodescendientes e indígenas Eperara Siapidara. Puerto Merizalde es el corazón de este proyecto — un territorio de riqueza cultural invaluable que merece ser preservado y visibilizado mediante las herramientas del siglo XXI.</p>
+        </div>
+
+        <div class="detail-section">
+            <h3><span class="section-marker"></span>Visión del proyecto</h3>
+            <p>Mi Pacífico App aspira a convertirse en un ecosistema digital colaborativo donde las comunidades del litoral sean las protagonistas de la preservación de su propio patrimonio inmaterial — gastronomía, medicina tradicional, música, danzas y tradición oral — accesible desde cualquier dispositivo móvil, incluso sin conexión a internet.</p>
+        </div>
+
+        <div class="perfil-cta">
+            <p>¿Quieres colaborar con el proyecto?</p>
+            <button onclick="showModule('contact')">Comparte tu historia</button>
+        </div>
+    `;
 }
 
 function buildContactForm() {
@@ -434,30 +546,27 @@ function buildContactForm() {
         <div class="social-share-section">
             <h4>Contacta o comparte en redes sociales</h4>
             <div class="share-btns">
-                <button class="share-btn s-wa" onclick="contactarWhatsApp()" title="WhatsApp">💬</button>
-                <button class="share-btn s-fb" onclick="compartirFacebook()" title="Facebook">f</button>
-                <button class="share-btn s-tw" onclick="compartirTwitter()" title="Twitter/X">𝕏</button>
+                <button class="share-btn s-wa" onclick="contactarWhatsApp()">💬</button>
+                <button class="share-btn s-fb" onclick="compartirFacebook()">f</button>
+                <button class="share-btn s-tw" onclick="compartirTwitter()">𝕏</button>
             </div>
         </div>`;
 }
 
 async function enviarFormulario() {
-    const name     = document.getElementById('f-name').value.trim();
-    const email    = document.getElementById('f-email').value.trim();
-    const cat      = document.getElementById('f-cat').value;
-    const title    = document.getElementById('f-title').value.trim();
-    const content  = document.getElementById('f-content').value.trim();
-    const location = document.getElementById('f-location').value.trim();
-
+    const name    = document.getElementById('f-name').value.trim();
+    const email   = document.getElementById('f-email').value.trim();
+    const cat     = document.getElementById('f-cat').value;
+    const title   = document.getElementById('f-title').value.trim();
+    const content = document.getElementById('f-content').value.trim();
+    const location= document.getElementById('f-location').value.trim();
     if (!name || !email || !cat || !title || !content) {
         alert('Por favor completa todos los campos obligatorios (*)');
         return;
     }
-
     const btn = document.querySelector('.form-submit');
     btn.textContent = 'Enviando...';
     btn.disabled = true;
-
     try {
         const res = await fetch(FORMSPREE_URL, {
             method: 'POST',
@@ -466,12 +575,7 @@ async function enviarFormulario() {
         });
         if (res.ok) {
             document.getElementById('formSuccess').classList.add('show');
-            document.getElementById('f-name').value = '';
-            document.getElementById('f-email').value = '';
-            document.getElementById('f-cat').value = '';
-            document.getElementById('f-title').value = '';
-            document.getElementById('f-content').value = '';
-            document.getElementById('f-location').value = '';
+            ['f-name','f-email','f-cat','f-title','f-content','f-location'].forEach(id => document.getElementById(id).value = '');
         } else {
             document.getElementById('formError').classList.add('show');
         }
@@ -483,10 +587,6 @@ async function enviarFormulario() {
     }
 }
 
-function playAudio(btn) {
-    btn.textContent = btn.textContent === '▶' ? '⏸' : '▶';
-}
-
 function goHome() {
     if (currentAudio) { currentAudio.pause(); currentAudio = null; }
     document.getElementById('detailScreen').classList.remove('active');
@@ -495,5 +595,4 @@ function goHome() {
 }
 </script>
 </body>
-</html>
 </html>
