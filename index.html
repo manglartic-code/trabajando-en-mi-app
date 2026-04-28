@@ -261,19 +261,49 @@ function responderQuiz(idx){
 }
 function siguienteQuiz(){
     qActual++;
-    if(qActual<preguntasQuiz.length){ cargarPregunta(); }
-    else {
-        document.getElementById('quiz-opciones').innerHTML='';
-        document.getElementById('quiz-num').textContent='';
-        document.getElementById('quiz-pregunta').textContent='';
-        document.getElementById('quiz-feedback').className='quiz-feedback';
-        document.getElementById('quiz-btn-sig').className='quiz-btn-sig';
-        const res=document.getElementById('quiz-resultado');
+    if(qActual < preguntasQuiz.length){
+        cargarPregunta();
+    } else {
+        document.getElementById('quiz-opciones').innerHTML = '';
+        document.getElementById('quiz-num').textContent = '';
+        document.getElementById('quiz-pregunta').textContent = '';
+        document.getElementById('quiz-feedback').className = 'quiz-feedback';
+        document.getElementById('quiz-btn-sig').className = 'quiz-btn-sig';
+
+        // NUEVO: guardar mejor puntaje en localStorage
+        const mejorAnterior = parseInt(localStorage.getItem('mejorPuntajeQuiz') || '0');
+        if(qPuntaje > mejorAnterior){
+            localStorage.setItem('mejorPuntajeQuiz', qPuntaje);
+        }
+        const mejor = Math.max(qPuntaje, mejorAnterior);
+
+        const res = document.getElementById('quiz-resultado');
         res.classList.add('show');
-        document.getElementById('quiz-puntaje').textContent=`${qPuntaje}/${preguntasQuiz.length}`;
-        const msgs=['Sigue explorando los módulos para conocer más tu cultura.','Buen intento. Repasa el módulo de Música y danzas.','¡Bien! Estás conociendo tu patrimonio cultural.','¡Muy bien! Buen conocimiento de la música del Pacífico.','¡Excelente! Eres un guardián del patrimonio del río Naya.','¡Brillante! Conocimiento profundo de la cultura pacífica.','¡Perfecto! Dominas el patrimonio musical del Pacífico.'];
-        document.getElementById('quiz-msg').textContent=msgs[Math.min(qPuntaje,msgs.length-1)];
+        document.getElementById('quiz-puntaje').textContent = `${qPuntaje}/${preguntasQuiz.length}`;
+
+        // NUEVO: mostrar mejor puntaje histórico
+        document.getElementById('quiz-msg').innerHTML = `
+            ${getMensaje(qPuntaje)}
+            <br><br>
+            <span style="font-size:0.75rem; color:var(--accent-color); font-weight:600;">
+                🏆 Tu mejor puntaje: ${mejor}/${preguntasQuiz.length}
+            </span>
+        `;
     }
+}
+
+// NUEVA función separada para los mensajes
+function getMensaje(puntaje){
+    const msgs = [
+        'Sigue explorando los módulos para conocer más tu cultura.',
+        'Buen intento. Repasa el módulo de Música y danzas.',
+        '¡Bien! Estás conociendo tu patrimonio cultural.',
+        '¡Muy bien! Buen conocimiento de la música del Pacífico.',
+        '¡Excelente! Eres un guardián del patrimonio del río Naya.',
+        '¡Brillante! Conocimiento profundo de la cultura pacífica.',
+        '¡Perfecto! Dominas el patrimonio musical del Pacífico.'
+    ];
+    return msgs[Math.min(puntaje, msgs.length - 1)];
 }
 function reiniciarQuiz(){
     document.getElementById('quiz-resultado').classList.remove('show');
